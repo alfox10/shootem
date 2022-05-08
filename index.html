@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>ShootEm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="parent">
+        <div class="score"><span>Score: </span><span id="scoreAmount">0</span><span> Level: </span><span
+                id="level">1</span></div>
+        <div class="startBox">
+            <div class="labelStart">
+                <span>Press Start to play!</span><br><br><br>
+                <span id="textInfo">Left mouse button to eliminate enemies, remember bigger enemies need more hit to eliminate.
+                </span>
+            </div>
+            <button class="startButton" onclick="start()">START</button>
+            <button class="lbButton" onclick="showLB()">LEADERBOARD</button>
+        </div>
+        <div class="endBox">
+            <div class="gameover">
+                <span>
+                    GAME OVER
+                </span>
+            </div>
+            <div class="finalscore">
+                <span id="finalscorenumber">
+                    000000
+                </span>
+            </div>
+            <div class="points">
+                <span>
+                    points
+                </span>
+            </div>
+            <div class="nameLabel">
+                <span>
+                    insert your name
+                </span>
+            </div>
+            <div class="inputname">
+                <span>
+                    <input id="namescore" type="text">
+                </span>
+            </div>
+            <button class="restartButton" onclick="restart()">RESTART</button>
+        </div>
+        <div class="lb">
+            <div class="grid-container">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>  
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>  
+                <div class="grid-item">7</div>
+                <div class="grid-item">8</div>
+                <div class="grid-item">9</div> 
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
+
+
+
+
+    <script src="js/BaseCircleObject.js"></script>
+    <script src="js/Particles.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
