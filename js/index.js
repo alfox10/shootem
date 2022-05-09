@@ -28,7 +28,7 @@ let intervalId;
 function showLB() {
 
     const url = `https://shootem-be.alfox10.repl.co/api/v1/leaderboard`
-    fetch(url, { mode: 'no-cors' })
+    fetch(url)
         .then(response => response.json())
         .then(js => {
             console.log(js);
@@ -69,7 +69,7 @@ function restart() {
         name = namescore.value;
     }
     const url = `https://shootem-be.alfox10.repl.co/api/v1/player?name=${name}&score=${score}`
-    fetch(url, { mode: 'no-cors' })
+    fetch(url)
         .then(response => {
             console.log(response)
         });
