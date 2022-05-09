@@ -7,6 +7,7 @@ const endBox = document.querySelector('.endBox');
 const finalScoreNumber = document.querySelector('#finalscorenumber');
 const namescore = document.querySelector('#namescore');
 const lb = document.querySelector('.lb');
+const grid = document.querySelector('.grid-container');
 canvas.width = innerWidth
 canvas.height = innerHeight
 
@@ -31,7 +32,13 @@ function showLB() {
     fetch(url)
         .then(response => response.json())
         .then(js => {
-            console.log(js);
+            const resp = js.data
+            let gridChild = '';
+            resp.forEach(row =>{
+                console.log(row.position,row.name,row.score);
+                gridChild += `<div class="grid-item">${row.position}</div><div class="grid-item">${row.name}</div><div class="grid-item">${row.score}</div>`
+            });
+            grid.innerHTML = gridChild;
             startBox.style.display = 'none';
             lb.style.display = 'flex';
         });
