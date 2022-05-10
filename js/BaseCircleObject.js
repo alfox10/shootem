@@ -11,6 +11,8 @@ class BaseCircleObject{
     draw(){
         this.context.beginPath();
         this.context.fillStyle = this.color;
+        this.context.shadowBlur = 10;
+        this.context.shadowColor = this.color;
         this.context.arc(this.position.x,this.position.y,this.radius,0,Math.PI * 2);
         this.context.fill();
         this.context.closePath();
