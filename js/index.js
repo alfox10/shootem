@@ -35,7 +35,8 @@ function switchAudio() {
 function start() {
     startBox.style.display = 'none';
     sfx.start.play();
-    music.bgm1.play();
+    if (!music.bgm1.playing())
+        music.bgm1.play();
     init();
     isStarted = true;
 }
@@ -366,7 +367,7 @@ function createProjectile(e) {
         current_ammo -= 1;
         if (!isMachineGun) {
             sfx.rocket.play();
-        }
+        } else rocketGunRatio = 0;
         if (current_ammo <= 0) {
             rocketGunRatio = 0;
             isPowered = false;
