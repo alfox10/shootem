@@ -20,16 +20,27 @@ function showLB() {
         });
 
 }
+function switchAudio() {
+    isAudioOn = !isAudioOn;
+    isAudioOn ? audioBtn.innerHTML = 'AUDIO ON' : audioBtn.innerHTML = 'AUDIO OFF';
+    for (const s in sfx) {
+        isAudioOn ? sfx[s].volume(1) : sfx[s].volume(0);
+    }
+
+    for (const m in music) {
+        isAudioOn ? music[m].volume(0.5) : music[m].volume(0);
+    }
+}
 
 function start() {
-    isStarted = true;
     startBox.style.display = 'none';
     sfx.start.play();
     music.bgm1.play();
     init();
+    isStarted = true;
 }
 
-function saveSCore() {
+function saveScore() {
     let name;
     if (namescore.value === '' || namescore.value === ' ') {
         name = 'unknown';
@@ -44,7 +55,7 @@ function saveSCore() {
 }
 
 function restart() {
-    saveSCore();
+    saveScore();
     sfx.start.play();
     endBox.style.display = 'none';
     init();
@@ -52,7 +63,7 @@ function restart() {
 }
 
 function back() {
-    saveSCore();
+    saveScore();
     sfx.back.play();
     startBox.style.display = 'block';
     endBox.style.display = 'none';
@@ -353,7 +364,7 @@ function createProjectile(e) {
     if (isPowered) {
         color = player.strokeStyle;
         current_ammo -= 1;
-        if(!isMachineGun){
+        if (!isMachineGun) {
             sfx.rocket.play();
         }
         if (current_ammo <= 0) {
@@ -396,9 +407,9 @@ addEventListener('mousemove', (e) => {
 });
 
 addEventListener('mouseup', (e) => {
+    sfx.machineGun.stop();
     if (isStarted) {
         isMouseDown = false;
-        sfx.machineGun.stop();
     }
 });
 
@@ -447,5 +458,3 @@ addEventListener('keyup', (e) => {
         }
     }
 });
-
-

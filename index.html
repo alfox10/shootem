@@ -12,16 +12,19 @@
     <div class="parent">
         <div class="score"><span>Score: </span><span id="scoreAmount">0</span><span> Level: </span><span
                 id="level">1</span></div>
+        <div class="audio-settings"> <button class="audioBtn" onclick="switchAudio()">AUDIO ON</button></div>
         <div class="startBox">
             <div class="labelStart">
                 <p id="titleInfo">Press Start to play!</p>
                 <p class="textInfo">Move with <span class="kb-emphasize">WASD</span> keybord buttons</p>
-                <p class="textInfo"><span class="kb-emphasize">LMB</span> to eliminate enemies, remember bigger enemies needs more hits to get eliminated.</p>
+                <p class="textInfo"><span class="kb-emphasize">LMB</span> to eliminate enemies, remember bigger enemies
+                    needs more hits to get eliminated.</p>
                 <p class="textInfo">Take hexagons for a temporary POWER UP.
-                    <ul class="textInfo">
-                        <li><span class="hl-r-pu">red hexagon</span>: 10 AMMO, you make more damage</li>
-                        <li><span class="hl-y-pu">yellow hexagon</span>: 60 AMMO, your ROF is incrised by far, you don't need to click each time, take your <span class="kb-emphasize">LMB</span> down!</li>
-                    </ul>
+                <ul class="textInfo">
+                    <li><span class="hl-r-pu">red hexagon</span>: 10 AMMO, you make more damage</li>
+                    <li><span class="hl-y-pu">yellow hexagon</span>: 60 AMMO, your ROF is incrised by far, you don't
+                        need to click each time, take your <span class="kb-emphasize">LMB</span> down!</li>
+                </ul>
                 </p>
                 <p class="textInfo">If an enemy hits you, GAME OVER!</p>
             </div>
@@ -62,9 +65,9 @@
         </div>
         <canvas></canvas>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" 
-    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/variables.js"></script>
     <script src="js/BaseCircleObject.js"></script>
     <script src="js/BasePolygonObject.js"></script>

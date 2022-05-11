@@ -17,6 +17,22 @@
     user-select: none;
 }
 
+.audio-settings {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 14px;
+    user-select: none;
+    right: 10px;
+}
+.audioBtn{
+    background-color: #EFEAD8;
+    color: black;
+    border: 2px solid #D0C9C0;
+    border-radius: 3px;
+    padding: 1px;   
+}
+
 .startBox {
     background: rgb(10, 10, 10);
     width: 900px;
