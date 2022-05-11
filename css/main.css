@@ -19,28 +19,35 @@
 
 .startBox {
     background: rgb(10, 10, 10);
-    width: 500px;
+    width: 900px;
     height: 600px;
     position: absolute;
     top: 20%;
     left: 50%;
-    margin: -120px 0 0 -250px;
+    margin: 0 0 0 0;
     border: 4px solid #8A2BE2;
     border-radius: 10px;
+    transform: translateX(-450px);
 }
 
 #textInfo{
     font-size: 12px;
+    line-height: 1.5;
+}
+
+#titleInfo{
+    font-size: 18px;
+    line-height: 3;
 }
 
 .labelStart {
     position: absolute;
     left: 50%;
-    top: 20%;
+    top: 20px;
     transform: translateY(-50%);
     transform: translateX(-50%);
     height: 450px;
-    width: 320px;
+    width: 880px;
 }
 
 .startButton {
