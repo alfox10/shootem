@@ -22,6 +22,53 @@ const perfectFrameTime = 1000 / 60;
 const deltaTime = 200;
 const AMMO_VELOCITY_DELTA = 3;
 
+const music = {
+    bgm1: new Howl({
+        src:['./audio/bgm.mp3'],
+        html5:true,
+        loop:true,
+        volume: 0.5
+    })
+};
+
+const sfx = {
+    back: new Howl({
+        src:['./audio/back.mp3'],
+        loop:false,
+        html5:true
+    }),
+    hit: new Howl({
+        src:['./audio/hit.mp3'],
+        loop:false,
+        html5:true
+    }),
+    machineGun: new Howl({
+        src:['./audio/machine_gun.mp3'],
+        loop:true,
+        html5:true
+    }),
+    normal: new Howl({
+        src:['./audio/normal_laser.mp3'],
+        loop:false,
+        html5:true
+    }),
+    pu: new Howl({
+        src:['./audio/pu.mp3'],
+        loop:false,
+        html5:true
+    }),
+    rocket: new Howl({
+        src:['./audio/rocket.mp3'],
+        loop:false,
+        html5:true
+    }),
+    start: new Howl({
+        src:['./audio/start.mp3'],
+        loop:false,
+        html5:true
+    }),
+};
+
 
 let centerX;
 let centerY;

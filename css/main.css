@@ -29,10 +29,23 @@
     border-radius: 10px;
     transform: translateX(-450px);
 }
+.kb-emphasize{
+    background-color: #EFEAD8;
+    color: black;
+    border: 2px solid #D0C9C0;
+    border-radius: 3px;
+    padding: 1px;
+}
 
-#textInfo{
+.hl-y-pu{
+    color: yellow;
+}
+.hl-r-pu{
+    color: red;
+}
+.textInfo{
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 2.5;
 }
 
 #titleInfo{
@@ -152,7 +165,19 @@
 .restartButton {
     position: absolute;
     left: 50%;
-    top: 75%;
+    top: 72%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    height: 40px;
+    width: 120px;
+    color: #8A2BE2;
+
+}
+
+.backToMainButton {
+    position: absolute;
+    left: 50%;
+    top: 86%;
     transform: translateY(-50%);
     transform: translateX(-50%);
     height: 40px;
@@ -177,11 +202,18 @@
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    padding: 10px;
+    padding: 2px;
     width: 100%;
   }
   .grid-item {
-    padding: 20px;
+    padding: 12px;
     font-size: 20px;
     text-align: center;
   }
+
+  .backLBButton {
+    height: 50px;
+    padding: 10px;
+    color: #8A2BE2;
+
+}

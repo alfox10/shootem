@@ -13,11 +13,49 @@ function showLB() {
             resp.forEach(row => {
                 gridChild += `<div class="grid-item">${row.position}</div><div class="grid-item">${row.name}</div><div class="grid-item">${row.score}</div>`
             });
+            gridChild += '<div class="grid-item"></div><div class="grid-item"><button class="backLBButton" onclick="hideLB()">NEW GAME</button></div><div class="grid-item"></div>';
             grid.innerHTML = gridChild;
             startBox.style.display = 'none';
             lb.style.display = 'flex';
         });
 
+}
+
+function start() {
+    isStarted = true;
+    startBox.style.display = 'none';
+    sfx.start.play();
+    music.bgm1.play();
+    init();
+}
+
+function saveSCore() {
+    let name;
+    if (namescore.value === '' || namescore.value === ' ') {
+        name = 'unknown';
+    } else {
+        name = namescore.value;
+    }
+    const url = `https://shootem-be.alfox10.repl.co/api/v1/player?name=${name}&score=${score}`
+    fetch(url)
+        .then(response => {
+            console.log(response)
+        });
+}
+
+function restart() {
+    saveSCore();
+    sfx.start.play();
+    endBox.style.display = 'none';
+    init();
+    isStarted = true;
+}
+
+function back() {
+    saveSCore();
+    sfx.back.play();
+    startBox.style.display = 'block';
+    endBox.style.display = 'none';
 }
 
 function hideLB() {
@@ -103,26 +141,7 @@ function renderdBg() {
     c.restore();
 }
 
-function start() {
-    isStarted = true;
-    startBox.style.display = 'none';
-}
 
-function restart() {
-    let name;
-    if (namescore.value === '' || namescore.value === ' ') {
-        name = 'unknown';
-    } else {
-        name = namescore.value;
-    }
-    const url = `https://shootem-be.alfox10.repl.co/api/v1/player?name=${name}&score=${score}`
-    fetch(url)
-        .then(response => {
-            console.log(response)
-        });
-    endBox.style.display = 'none';
-    init();
-}
 
 function createEnemis() {
     if (isStarted) {
@@ -158,7 +177,7 @@ function createEnemis() {
 
 function spawnPowerUp() {
     console.log(powerups.length);
-    if(powerups.length > 1) return;
+    if (powerups.length > 1) return;
 
     let puColor, puType;
     if (Math.random() < 0.5) {
@@ -189,10 +208,11 @@ function renderPowerUp() {
     powerups.forEach((pu, i) => {
         if (pu.position.x + pu.radius < 0 || pu.position.x - pu.radius > canvas.width ||
             pu.position.y + pu.radius < 0 || pu.position.y - pu.radius > canvas.height) {
-
+            powerups.splice(i, 1);
         } else {
             const p_dist = Math.hypot(player.position.x - pu.position.x, player.position.y - pu.position.y);
             if (p_dist - pu.radius - player.radius < 1) {
+                sfx.pu.play();
                 isPowered = true;
                 player.strokeStyle = pu.color;
                 player.shadowColor = pu.color;
@@ -243,6 +263,8 @@ function animate() {
                 pa.update();
         });
         if (isMouseDown && isMachineGun && (Date.now() - lastTimestamp >= deltaTime)) {
+            if (!sfx.machineGun.playing())
+                sfx.machineGun.play();
             createProjectile(curr_mouse_pos);
             lastTimestamp = Date.now();
         }
@@ -256,7 +278,7 @@ function animate() {
                 } else {
                     const dist = Math.hypot(pj.position.x - en.position.x, pj.position.y - en.position.y);
                     if (dist - en.radius - pj.radius < 1) {
-
+                        sfx.hit.play();
                         for (let p = 0; p < en.radius / 2; p++) {
                             particles.push(new Particles(
                                 c,
@@ -295,6 +317,7 @@ function animate() {
             });
             const p_dist = Math.hypot(player.position.x - en.position.x, player.position.y - en.position.y);
             if (p_dist - en.radius - player.radius < 1) {
+                sfx.machineGun.stop();
                 endBox.style.display = 'block';
                 const s_score = score + '';
                 const remeining = (6 - s_score.length) > 0 ? 6 - s_score.length : 0;
@@ -302,6 +325,7 @@ function animate() {
                 cancelAnimationFrame(animationId);
                 clearInterval(enemiesIntervalId);
                 clearInterval(powerupIntervalId);
+                isStarted = false;
             } else if (!isEliminated) {
                 centerX = player.position.x + player.radius / (Math.PI * 2);
                 centerY = player.position.y + player.radius / (Math.PI * 2);
@@ -329,6 +353,9 @@ function createProjectile(e) {
     if (isPowered) {
         color = player.strokeStyle;
         current_ammo -= 1;
+        if(!isMachineGun){
+            sfx.rocket.play();
+        }
         if (current_ammo <= 0) {
             rocketGunRatio = 0;
             isPowered = false;
@@ -341,6 +368,8 @@ function createProjectile(e) {
     } else {
         color = DEFAULT_AMMO_COLOR;
         isMachineGun = false;
+        sfx.machineGun.stop();
+        sfx.normal.play();
     }
 
     const x = (Math.cos(angle)) * AMMO_VELOCITY_DELTA * deltaAmmo;
@@ -369,6 +398,7 @@ addEventListener('mousemove', (e) => {
 addEventListener('mouseup', (e) => {
     if (isStarted) {
         isMouseDown = false;
+        sfx.machineGun.stop();
     }
 });
 
@@ -418,5 +448,4 @@ addEventListener('keyup', (e) => {
     }
 });
 
-init();
 
